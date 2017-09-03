@@ -1,0 +1,7 @@
+#header{height:50px;width:100%;font-size: 30px;position: relative;}
+#header-container{ width: 1200px; margin: 0 auto;position: relative;}
+#header-container div{ float: left; }
+#top-navi {position: relative;left: 509px; float: right; width:321px;height: 50px;}
+#top-navi ul li{ float: left; font-size: 15px;display: inline-block;line-height: 50px;}
+#top-navi ul li a{text-decoration: none;color: blue;}
+#top-navi ul li a:hover{text-decoration: underline;color: red;}
