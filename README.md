@@ -4,7 +4,7 @@
   - 语言Java1.7+
   - 运行容器Tomcat7+
   - IDE：Eclipse
-  - WEB框架Struts2+JSP
+  - WEB框架Struts2.5+JSP
   - 数据库MySQL5+
   - 前端HTML5+CSS3+JQuery
  
@@ -17,13 +17,19 @@
  5. 更改并创建文件上传路径
      > 项目某些功能需要上传文件，根据需要可以更改配置路径，在src/org/task/ngst/gyb/conf/upload.properties中
        项目支持Windows和linux环境，所以根据你的环境配置
-       ```widows_memberUploadRootPath=D:\\taskmanager\\taskfile\\member
+       ```
+        widows_memberUploadRootPath=D:\\taskmanager\\taskfile\\member
         linux_memberUploadRootPath=/taskmanager/taskfile/menber
         windows_adminUploadRootPath=D:\\taskmanager\\taskfile\\admin
         linux_adminUploadRootPath=/taskmanager/taskfile/admin
-        ```
-      ~~~注意在你本地需要手动创建这些目录~~~
+       ```
+      ***注意在你本地需要手动创建这些目录***
   6. 如果你在IDEA中运行项目，你可能还需要配置一个tomcat，具体可以自行百度。
+  
+  ## 默认账户与密码
+   - 社团成员：1415925611 123456
+   - 管 理员 : 1415925612 123456
+   - 维护人员：1415925613 123456
   
   
   
