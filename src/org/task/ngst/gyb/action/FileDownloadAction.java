@@ -10,15 +10,18 @@ import org.task.ngst.gyb.util.UploadUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 文件下载Action
+ * @author 耿远博
+ */
 public class FileDownloadAction extends ActionSupport{
 	
-	/**
-	 * 文件下载Action
-	 */
 	private static final long serialVersionUID = 2681523098058487148L;
 	private InputStream fileInputStream;//文件输入流
 	private String downloadFileName;//存储要下载的文件名，从数据库中读出的文件路径及文件名
 	private String recvfileName;//用户下载文件保存的文件名
+	
+	private Integer cate;//根据前台参数，选择文件的根路径，1 表示从管理员文件路径下，0表示从普通成员文件路径下
 	
 	@Override
 	public String execute() throws Exception {
@@ -27,9 +30,9 @@ public class FileDownloadAction extends ActionSupport{
 			return "LoginPastDue";
 		}
 		String downloadFileBasePath = null;
-		if(u.getUcategory()==1){
+		if(cate==1){
 			downloadFileBasePath = UploadUtil.adminUploadRootPath;
-		}else if(u.getUcategory()==0){
+		}else if(cate==0){
 			downloadFileBasePath = UploadUtil.memberUploadRootPath;
 		}
 		System.out.println(downloadFileName);
@@ -66,6 +69,18 @@ public class FileDownloadAction extends ActionSupport{
 
 	public void setRecvfileName(String recvfileName) {
 		this.recvfileName = recvfileName;
+	}
+
+
+
+	public Integer getCate() {
+		return cate;
+	}
+
+
+
+	public void setCate(Integer cate) {
+		this.cate = cate;
 	}
 	
 

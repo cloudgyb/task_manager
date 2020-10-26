@@ -3,66 +3,59 @@ package org.task.ngst.gyb.action.member;
 import java.io.File;
 import java.util.Date;
 
-import org.apache.struts2.ServletActionContext;
 import org.task.ngst.gyb.entity.Grade;
 import org.task.ngst.gyb.entity.UserTaskStatus;
 import org.task.ngst.gyb.service.UserTaskStatusDaoService;
 import org.task.ngst.gyb.service.imple.GradeDaoServiceImple;
 import org.task.ngst.gyb.service.imple.UserTaskStatusDaoServiceImple;
-import org.task.ngst.gyb.util.FileUtil;
+import org.task.ngst.gyb.util.UploadUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ * 用户任务上传或者更新Action
+ * @author 耿远博
+ */
 public class UploadTask extends ActionSupport{
-	/**
-	 * 用户任务上传Action
-	 */
+	
 	private static final long serialVersionUID = -2393087254082526918L;
 	//文件相关属性
 	private File file;
 	private String fileFileName;
 	private String fileContentType;
-	//
+	//任务数据
 	private String ttext1;
 	private String ttext2;
 	private Integer uid;
 	private Integer tid;
 	@Override
 	public String execute() throws Exception {
-		String outPath=null;
 		String fileExtension = null;
 		String outFileName = null;
 		if(file!=null){
 			/*-------------------------文件上传---------------------------------*/
-			outPath = ServletActionContext.getServletContext().getRealPath("/usertaskdoc");
 			//输出文件的后缀名
 			fileExtension = fileFileName.substring(fileFileName.lastIndexOf("."));
 			//输出文件名：uid+tid+系统当前时间+用户上传的文件后缀名
-			outFileName = uid+"_"+tid+"_"+System.currentTimeMillis()+fileExtension;
-			System.out.println(outFileName);
+			outFileName = System.currentTimeMillis()+fileExtension;
 			//上传文件
-			FileUtil.uploadFile(file, outPath, outFileName);
-			
+			UploadUtil.memberUploadFile(file, outFileName);
 		}
-		//////////////////////////////////////////////////////////////////////
-		/*------------------------任务上传-----------------------------------*/
+		/*-----------------------任务数据上传-----------------------------------*/
 		UserTaskStatusDaoService utsds = new UserTaskStatusDaoServiceImple();
 		UserTaskStatus uts = utsds.getTaskStatusBySuidAndStid(uid, tid);
 		if(uts.getStaffix()!=null){
-			System.out.println(uts.getStaffix()+"----------------");
-			FileUtil.deleteFile(uts.getStaffix());
+			UploadUtil.memberDeleteOldFile(uts.getStaffix());
 		}
 		uts.setDoneDate(new Date());
-		uts.setStatus(1);
+		uts.setStatus(1); //设置状态为1，表示任务已提交
 		uts.setSuid(uid);
 		uts.setStid(tid);
 		uts.setTtext1(ttext1);
 		uts.setTtext2(ttext2);
-		System.out.println(outPath+"/"+outFileName);
-		if(outPath==null){//如果没有上传文件
+		if(file==null){//如果没有上传文件
 			uts.setStaffix(null);
 		}else{
-			uts.setStaffix(outPath+"/"+outFileName);
+			uts.setStaffix(outFileName);
 		}
 		utsds.modifyTaskStatus(uts);
 		//向成绩表插入数据

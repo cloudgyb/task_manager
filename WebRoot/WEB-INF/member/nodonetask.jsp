@@ -5,7 +5,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%>
-<%@ taglib uri="/struts-tags" prefix="s" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -26,22 +25,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<table class="table table-bordered table-striped table-hover">
-  		
-  		<c:choose>
-  		<c:when test="${fun:length(requestScope.nodonetask)==0 }">
-  			<button class="btn btn-success">没有未完成任务</button>
-  		</c:when>
-  		<c:otherwise>
-  			<thead>
-  				<tr><th>任务名</th><th>任务上传人</th><th>任务上传日期</th><th>任务截止日期</th><th>操作</th></tr>
-  			</thead>
-	   	 	<c:forEach  items='${requestScope.nodonetask }' var="userundonetask">
-	    		<tr><td>${userundonetask.tname }</td><td>${userundonetask.tuname }</td><td>${userundonetask.tstart }</td><td>${userundonetask.tend }</td><td><a href="${pageContext.request.contextPath}/member/godotask.action?tid=${userundonetask.tid}"><button class="btn btn-success">去完成</button></a></td></tr>
-	    	</c:forEach>
-	    </c:otherwise>
-    	</c:choose>
-    </table>
-    
+  	<div class="panel panel-danger">
+  		<div class="panel-heading">
+			<span class="h3" style="font-family:隶书">待完成任务</span>
+			<a style="float:right;padding-left:20px;" href="javascript:window.history.go(-1);"> 
+				<span class="badge" data-toggle="tooltip"  data-placement="bottom" title="前进">
+					<span
+						class="glyphicon glyphicon-arrow-right">
+					</span>
+				</span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:location.reload();"> 
+					<span class="badge" data-toggle="tooltip"  data-placement="bottom" title="刷新本页">
+						<span class="glyphicon glyphicon-refresh"></span> 
+					</span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:window.parent.location.reload();">
+				 <span class="badge" data-toggle="tooltip"  data-placement="bottom" title="回到主页">
+				 	<span class="glyphicon glyphicon-home"></span>
+				 </span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:window.history.go(1);">
+				 <span class="badge" data-toggle="tooltip"  data-placement="bottom" title="后退" >
+				 	<span class="glyphicon glyphicon-arrow-left"></span>
+				 </span>
+			</a>
+  		</div>
+  		<table class="table table-striped table-hover">
+	  		<c:choose>
+	  		<c:when test="${fun:length(requestScope.nodonetask)==0 }">
+	  			<div class="text-center">
+	  				<img src="<%=basePath%>img/hintimg/taskalldone.png"/>
+	  				<br><span class="text-primary">哎呦，不错哦！任务都做完啦！</span>
+	  			</div>
+	  		</c:when>
+	  		<c:otherwise>
+	  			<thead>
+	  				<tr>
+	  					<th>任务名</th>
+	  					<th>任务上传人</th>
+	  					<th>任务上传日期</th>
+	  					<th>任务截止日期</th>
+	  					<th>操作</th>
+	  				</tr>
+	  			</thead>
+		   	 	<c:forEach  items='${requestScope.nodonetask }' var="userundonetask">
+		    		<tr>
+		    			<td class="text-primary">${userundonetask.tname }</td>
+		    			<td>${userundonetask.tuname }</td>
+		    			<td>${userundonetask.tstart }</td>
+		    			<td>${userundonetask.tend }</td>
+		    			<td>
+		    				<a href="${pageContext.request.contextPath}/member/godotask.action?tid=${userundonetask.tid}" class="btn btn-success btn-sm">去完成</a>
+		    			</td>
+		    		</tr>
+		    	</c:forEach>
+		    </c:otherwise>
+	    	</c:choose>
+	    </table>
+  	</div>    
+  	<script>
+  		$(function () { $("[data-toggle='tooltip']").tooltip(); });
+  	</script>
   </body>
 </html>

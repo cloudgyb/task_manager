@@ -81,7 +81,6 @@ public class UploadUtil {
 			fis = new FileInputStream(srcfile);
 			fos = new FileOutputStream(dstfile);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		copyFile(fis, fos);

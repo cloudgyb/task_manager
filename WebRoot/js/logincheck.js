@@ -34,6 +34,8 @@ $(document).ready(function(){
 		}
 	});
 	function login(auid,aupasswd,aucategory){
+		$('#loginbutt').val('登录中...');
+		$('#loginbutt').attr({"disabled":"disabled"});
 		$.post(
 				"login.action",
 				{uid:auid,upasswd:aupasswd,ucategory:aucategory},
@@ -41,6 +43,8 @@ $(document).ready(function(){
 					if(status=='success'){
 						console.log(data.mess+data.code+status);
 						if(data.code=='-2'||data.code=='-1'){
+							$('#loginbutt').val('登    录');
+							$('#loginbutt').removeAttr("disabled");
 							$("#loginMess").html(data.mess);
 						}
 						if(data.code=='0'){
@@ -53,6 +57,8 @@ $(document).ready(function(){
 						//$("#loginMess").html(data.mess);
 					}else{
 						$("#loginMess").html("服务器错误！");
+						$('#loginbutt').val('登    录');
+						$('#loginbutt').removeAttr("disabled");
 					}
 					
 				}

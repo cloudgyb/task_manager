@@ -19,20 +19,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   		<table class="table table-bordered table-striped table-hover">
-  		<c:choose>
-  		<c:when test="${fun:length(requestScope.taskgrade)==0 }">
-  			<button class="btn btn-success">没有以完成的任务的成绩</button>
-  		</c:when>
-  		<c:otherwise>
-  			<thead>
-  				<tr><th>任务名</th><th>成绩评定人</th><th>成绩评定日期</th><th>分数</th></tr>
-  			</thead>
-	   	 	<c:forEach  items='${requestScope.taskgrade }' var="grade">
-	    		<tr><td>${grade.tname }</td><td>${grade.dealUserName }</td><td>${grade.dealDate}</td><td><button class="btn btn-success">${grade.score }</button></tr>
-	    	</c:forEach>
-	    </c:otherwise>
-    	</c:choose>
-    </table>
+  	 <div class="panel panel-danger">
+  		<div class="panel-heading">
+			<span class="h3" style="font-family:隶书">任务成绩</span>
+			<a style="float:right;padding-left:20px;" href="javascript:window.history.go(-1);"> 
+				<span class="badge" data-toggle="tooltip"  data-placement="bottom" title="前进">
+					<span
+						class="glyphicon glyphicon-arrow-right">
+					</span>
+				</span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:location.reload();"> 
+					<span class="badge" data-toggle="tooltip"  data-placement="bottom" title="刷新本页">
+						<span class="glyphicon glyphicon-refresh"></span> 
+					</span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:window.parent.location.reload();">
+				 <span class="badge" data-toggle="tooltip"  data-placement="bottom" title="回到主页">
+				 	<span class="glyphicon glyphicon-home"></span>
+				 </span>
+			</a> 
+			<a style="float:right;padding-left:20px;" href="javascript:window.history.go(1);">
+				 <span class="badge" data-toggle="tooltip"  data-placement="bottom" title="后退" >
+				 	<span class="glyphicon glyphicon-arrow-left"></span>
+				 </span>
+			</a>
+  		</div>
+	   	<table class="table table-bordered table-striped table-hover">
+	  		<c:choose>
+	  		<c:when test="${fun:length(requestScope.taskgrade)==0 }">
+	  			<div class="text-center">
+		  				<img src="<%=basePath%>img/hintimg/notaskgrade.png"/>
+		  				<br><span class="text-primary">一个成绩都没有诶！</span>
+		  		</div>
+	  		</c:when>
+	  		<c:otherwise>
+	  			<thead>
+	  				<tr><th>任务名</th><th>成绩评定人</th><th>成绩评定日期</th><th>分数</th></tr>
+	  			</thead>
+		   	 	<c:forEach  items='${requestScope.taskgrade }' var="grade">
+		    		<tr><td>${grade.tname }</td><td>${grade.dealUserName }</td><td>${grade.dealDate}</td><td><button class="btn btn-success">${grade.score }</button></tr>
+		    	</c:forEach>
+		    </c:otherwise>
+	    	</c:choose>
+	    </table>
+    </div>
+      <script>
+  			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+  	  </script>
   </body>
 </html>

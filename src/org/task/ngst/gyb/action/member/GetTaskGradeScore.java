@@ -10,12 +10,10 @@ import org.task.ngst.gyb.service.GradeDaoService;
 import org.task.ngst.gyb.service.imple.GradeDaoServiceImple;
 
 import com.opensymphony.xwork2.ActionSupport;
-
-public class GetTaskGradeScore extends ActionSupport{
-	
-	/**
-	 * 查询任务成绩Action
-	 */
+/**
+ * 查询任务成绩Action
+ */
+public class GetTaskGradeScore extends ActionSupport{	
 	private static final long serialVersionUID = 7184512604708372953L;
 	private Integer uid;
 	@Override

@@ -21,7 +21,7 @@
 <script type="text/javascript">
 	//获取为批改任务列表
 	function getnotyetmarktask(tid) {
-		$.get("http://localhost:8080/task_manager/admin/getnotyetmarktask?tid="+ tid,
+		$.get("<%=basePath%>admin/getnotyetmarktask?tid="+ tid,
 			function(data, status) {
 				var taskcontiner = $("#tasklist");
 				if (data.tlist == null) {//tlist为空后台服务器出错
@@ -31,7 +31,7 @@
 				}
 				//数组长度为0，没有用户完成任务
 				if (data.tlist.length == 0) {
-					taskcontiner.html("<tr><td colspan='6'><h3>暂时还没有待批改的任务数据！</h3></td></tr>");
+					taskcontiner.html("<tr><td colspan='6' class='text-center'><img title='暂无数据' src='<%=basePath%>img/hintimg/nochecktask.png' /></td></tr>");
 				} else {
 					var tasks = data.tlist;
 					var htmlstr = "";
