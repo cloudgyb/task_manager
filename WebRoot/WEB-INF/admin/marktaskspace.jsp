@@ -127,7 +127,7 @@
 				<p class="text-info col-md-6">任务要求</p>
 				<c:if test="${not empty request.task.taffix}">
 				<p class="col-md-6">任务要求附件：
-					<a role="button" class="btn btn-success btn-sm" href="downloadfile.action?downloadFileName=${request.task.taffix}">下载</a>
+					<a role="button" class="btn btn-success btn-sm" href="downloadfile.action?downloadFileName=${request.task.taffix}&cate=1">下载</a>
 				</p>
 				</c:if>
 			</div>
@@ -142,7 +142,7 @@
 			<textarea rows="5" class="form-control" disabled>${request.donetaskdetail.ttext2}</textarea>
 			<hr>
 			<c:if test="${not empty request.donetaskdetail.staffix }">
-			<span>用户任务附件：<a role="button" class="btn btn-success btn-sm" href="downloadfile.action?downloadFileName=${request.donetaskdetail.staffix}">下载</a></span>
+			<span>用户任务附件：<a role="button" class="btn btn-success btn-sm" href="downloadfile.action?downloadFileName=${request.donetaskdetail.staffix}&cate=0">下载</a></span>
 			</c:if>
 		</div>
 		<div class="panel-footer">

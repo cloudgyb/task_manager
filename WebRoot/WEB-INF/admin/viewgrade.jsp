@@ -24,7 +24,7 @@
 		var tid = $("#t_item").val();
 		var tname = $("#t_item  option:selected").text();
 		if(tid==null||tid==="undefined"){
-			$("#grades").html("<h3 style='color:red'>暂时还没有数据！</h3>");
+			$("#grades").html("<tr><td colspan='6' class='text-center'><img title='暂无数据' src='<%=basePath%>img/hintimg/notaskgrade_1.png'/></td></tr>");
 			return;
 		}
 		getGradesByTid(tid,tname,"admin/getgradeitems?tid=");
@@ -39,7 +39,7 @@
 		$("#score-sort").click(function(){
 			var tid = $("#t_item").val();
 			if(tid==null||tid==="undefined"){
-				$("#grades").html("<h3 style='color:red'>暂时还没有数据！</h3>");
+				$("#grades").html("<tr><td colspan='6' class='text-center'><img title='暂无数据' src='<%=basePath%>img/hintimg/notaskgrade_1.png'/></tr></tr>");
 				return;
 			}
 			var tname = $("#t_item  option:selected").text();
@@ -63,7 +63,7 @@
 					return;
 				}
 				if(t_items.length==0){
-					gradesHtml = "<h3 style='color:red'>还没有成绩呢！</h3>";
+					gradesHtml = "<tr><td colspan='6' class='text-center'><img title='暂无数据' src='<%=basePath%>img/hintimg/notaskgrade_1.png'/></td></tr>";
 				}else{
 					for(var i = 0;i<t_items.length;i++){
 						gradesHtml += "<tr>"+

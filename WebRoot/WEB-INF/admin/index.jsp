@@ -99,10 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div id="left-navi">
   		<div id="lndiv">
   			<li><span><span class="glyphicon glyphicon-list"></span>&nbsp;查看上传的任务</span></li>
-  			<li><span><span class="glyphicon glyphicon-open"></span>&nbsp;上传任务</span></li>
+  			<li><span><span class="glyphicon glyphicon-open"></span>&nbsp;发布任务</span></li>
   			<li><span><span class="glyphicon glyphicon-ok"></span>&nbsp;批改任务</span></li>
   			<li><span><span class="glyphicon glyphicon-th-list"></span>&nbsp;查看任务成绩</span></li>
-  			<li><span><span class="glyphicon glyphicon-cog"></span>&nbsp;个人资料设置</span></li>
+  			<li><span><span class="glyphicon glyphicon-cog"></span>&nbsp;个人资料</span></li>
   		</div>
   	</div>
   	<!-- 侧边功能栏———结束 -->

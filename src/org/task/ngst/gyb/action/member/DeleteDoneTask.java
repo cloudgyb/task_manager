@@ -4,7 +4,7 @@ import org.task.ngst.gyb.entity.UserTaskStatus;
 import org.task.ngst.gyb.service.UserTaskStatusDaoService;
 import org.task.ngst.gyb.service.imple.GradeDaoServiceImple;
 import org.task.ngst.gyb.service.imple.UserTaskStatusDaoServiceImple;
-import org.task.ngst.gyb.util.FileUtil;
+import org.task.ngst.gyb.util.UploadUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -24,7 +24,10 @@ public class DeleteDoneTask extends ActionSupport{
 		//数据置空
 		uts.setDoneDate(null);
 		uts.setStatus(0);//完成状态修改为0
-		if(uts.getStaffix()!=null){ FileUtil.deleteFile(uts.getStaffix());	}
+		if(uts.getStaffix()!=null){ 
+			UploadUtil.memberDeleteOldFile(uts.getStaffix());
+			//FileUtil.deleteFile(uts.getStaffix());	
+		}
 		uts.setStaffix(null);
 		uts.setTtext1(null);
 		uts.setTtext2(null);

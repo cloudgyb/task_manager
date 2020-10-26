@@ -10,14 +10,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     <meta charset="utf-8" />
     <title>南工社团任务管理系统</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>coin/favicon.ico" media="screen" />
-    <!-- µ¼Èëbootstrap CSS -->
+    <link rel="shortcut icon" type="image/x-icon" href="<%=basePath%>coin/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<!-- µ¼Èëjquery js -->
 	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-	<!-- µ¼ÈëBootstrap js -->
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<!-- ×Ô¶¨Òåjs -->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			//用户信息下拉显示框控制--开始
@@ -27,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#user_info").mouseout(function(){$("#messBox").hide(); });
 			//用户信息下拉显示框控制--结束	
 			$("#lndiv li").click(function(){
-
+				$(this).addClass("navitem-active").siblings().removeClass("navitem-active");
 			 	if($(this).index()==0)
 			 		{ $("iframe").attr('src','${pageContext.request.contextPath}/member/getundonetask.action');}
 			 	else if($(this).index()==1){$("iframe").attr('src','${pageContext.request.contextPath}/member/getdonetask.action?uid=${sessionScope.task_user.uid}');}
@@ -39,7 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 
 	</script>
-	<!-- ×Ô¶¨Òåcss -->
 	<style type="text/css">
 		*{ margin:0;padding:0; }
 		body{ background: #000 url(<%=basePath%>img/bg2.jpg); color:white;font-family:serif;font-weight: bold;}
@@ -60,17 +55,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#left-navi{ position: absolute;width: 50%;margin-top: 10%; }
 		#left-navi div{}
 		#left-navi div li{ padding-left:40px;list-style: none;height: 40px; cursor: pointer;}
-		#left-navi div li:hover{ background:rgba(255,255,255,0.5);/*filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; color:green; z-index: -1*/}
+		#left-navi div li:hover,.navitem-active{ background:rgba(255,255,255,0.5);/*filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5; color:green; z-index: -1*/}
 		#left-navi div li span{ color:white;line-height: 40px;z-index: 900 }
 		/*///////////////////////////////////////////////////////////////////////////////*/
-		#main{ position: absolute;top: 60px; left: 150px; width: 89%;height: 92%;background: white;z-index:1;border-radius: 5px;padding: 10px;}
+		#main{ position: absolute;top: 60px; left: 161px; width: 88%;height: 90%;background: white;z-index:1;border-radius: 5px;padding: 10px;}
 	</style>
   </head>
   
   <body>
   	<!-- 头部导航———开始 -->
   	<div id="top-navi">
-  		<li><img src="<%=basePath%>coin/logo4.png" alt="ng_logo" style="width:150px;height:50px;"/></li>
+  		<li>
+  			<a href="${pageContext.request.contextPath}/memberIndex">
+  				<img src="<%=basePath%>coin/logo4.png" alt="ng_logo" style="width:150px;height:50px;"/>
+  			</a>
+  		</li>
   		<li><span style="line-height: 50px; font-size: 30px; font-family: 隶书">任务管理系统</span></li>
   		<li style="float: right;"><span style="padding-right: 30px;"><a href="${pageContext.request.contextPath}/logout" style="font-size: 15px;color:white;line-height: 50px">退出</a></span></li>
   		<li style="float: right;"><span style="font-size: 15px;line-height: 50px">帮助中心</span></li>
@@ -101,10 +100,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<!-- 侧边功能栏———开始 -->
   	<div id="left-navi">
   		<div id="lndiv">
-  			<li><span>未完成任务</span></li>
-  			<li><span>以完成任务</span></li>
-  			<li><span>任务成绩</span></li>
-  			<li><span>资料修改</span></li>
+  			<li><span class="glyphicon glyphicon-tasks"></span>&nbsp;<span>未完成任务</span></li>
+  			<li><span class="glyphicon glyphicon-list"></span>&nbsp;<span>以完成任务</span></li>
+  			<li><span class="glyphicon glyphicon-check"></span>&nbsp;<span>任务成绩</span></li>
+  			<li><span class="glyphicon glyphicon-user"></span>&nbsp;<span>个人资料</span></li>
   		</div>
   	</div>
   	<!-- 侧边功能栏———结束 -->
